@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+      {{ form.csrf_token }}
+
+      {{ form.email(class="email-form", autocomplete="none") }}
+      <ul>
+        {% for error in form.email.errors %}
+          <li style="color:red">{{ error }}</li>
+        {% endfor %}
+      </ul>
+
+      {{ form.password(class="password-form", autocomplete="none") }}
+      <ul>
+        {% for error in form.password.errors %}
+          <li style="color:red">{{ error }}</li>
+        {% endfor %}
+      </ul>
+
+      <input type="submit" name="" value="Submit">
+    </form>
+  
+  </body>
+</html>
